@@ -1,0 +1,44 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.top_page {
+  background-color: #ffffff;
+
+  h1 {
+    font-size: 64px;
+    padding-top: 31rem;
+    color: #000000;
+  }
+
+  h2 {
+    letter-spacing: 0.13em;
+  }
+
+  .table {
+    width: 50%;
+    margin-top: 5rem;
+    margin-bottom: 0;
+    font-size: 20px;
+
+    tbody {
+      display: inline-block;
+    }
+
+    tr {
+      border-bottom: 1px solid #CDD6DD;
+    }
+
+    td {
+      color: #000000;
+    }
+  }
+}

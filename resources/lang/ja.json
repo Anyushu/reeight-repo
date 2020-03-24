@@ -1,0 +1,14 @@
+{
+  "Password": "パスワード",
+  "E-Mail Address": "メールアドレス",
+  "E-mail": "メールアドレス",
+  "Remember Me": "ログイン状態を記憶する",
+  "voyager::generic.remember_me": "ログイン状態を記憶する",
+  "Login": "ログインする",
+  "Forgot Your Password?": "パスワードを忘れた方",
+  "Register": "新規会員登録",
+  "Logout": "ログアウト",
+  "Confirm Password": "パスワード(確認用)",
+  "Name": "お名前",
+  "passwords.throttled": "パスワードリセットに制限がかかっています。"
+}

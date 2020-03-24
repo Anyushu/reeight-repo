@@ -1,0 +1,31 @@
+/* Body */
+$body-bg: #fff;
+/* Typography */
+$font-family-sans-serif: 'Noto Sans JP', sans-serif;
+$font-size-base: 0.875rem;
+$line-height-base: 1.6; // Colors
+$yiq-text-dark: #3b4043;
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;
+$body-color: #343a40;
+$report-blue: #007aff;
+/* KAGARI Colors */
+$ka-primary: #11beae;
+$ka-orange: #FF490D;
+$ka-dark: #182A3C;
+$ka-navy: #4E5670;
+$ka-green: #0EC2A1;
+/* Override bootstrap colors */
+$primary: $ka-primary;
+$custom-file-text: (
+  en: "Browse",
+  ja: "画像を選ぶ"
+);

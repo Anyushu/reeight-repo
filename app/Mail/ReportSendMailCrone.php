@@ -35,7 +35,7 @@ class ReportSendMailCrone extends Mailable implements ShouldQueue
     public function build()
     {
         return $this
-        ->subject('アクセス解析ツール「KAGARI」｜レポート送付完了のお知らせ')
+        ->subject(date('Y年n月', strtotime(date('Y-m-1').'-1 month')).'度のレポート送付完了のお知らせ')
         ->markdown('mail.report-admin')
         ->with([
             'site_url' => $this->site_url,

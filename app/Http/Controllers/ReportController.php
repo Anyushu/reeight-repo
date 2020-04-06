@@ -104,7 +104,7 @@ class ReportController extends Controller
         $dateRangeTwo->setStartDate($comStart);
         $dateRangeTwo->setEndDate($comEnd);
 
-        $start_months = date('Y-m-01', strtotime($comStart.' -1 months'));
+        $start_months = date('Y-m-01', strtotime(date('Y-m-d').' -2 month'));
         $end_months = date('Y-m-t', strtotime($start_months));
         $three_months = new Google_Service_AnalyticsReporting_DateRange();
         $three_months->setStartDate($start_months);

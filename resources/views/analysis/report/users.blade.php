@@ -1,4 +1,3 @@
-@if(count($ga_result[0]) == 3 && count($ga_result[1]) == 3)
 @php
 // ユーザー数
 $new_user_data = $ga_result[0][0]['New Visitor'][0];
@@ -393,16 +392,3 @@ let myChart3 = new Chart(ctx3, {
 });
 </script>
 @endsection
-@else
-@section('content')
-<section class="reports">
-<div class="container">
-<div class="col-12">
-<div class="alert alert-warning">
-<p class="m-0">ユーザーの属性情報が取得できませんでした。Google Analyticsの設定をご確認ください。<a class="ml-2" href="https://support.google.com/analytics/answer/2819948?hl=ja" target="_blank"><i class="fas fa-link mr-1"></i>設定方法を確認する（公式ヘルプ）</a></p>
-</div>
-</div>
-</div>
-</section>
-@endsection
-@endif

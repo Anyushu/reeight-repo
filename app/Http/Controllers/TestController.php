@@ -127,14 +127,16 @@ class TestController extends Controller
                 } elseif ($site_days == 30) {
                     $action_url = URL::signedRoute('report-pdf.one-month', ['AddSites' => $site_id]);
                     $site_mail = ReportSendMail::where('site_id', $site_id)->get();
+                    echo "<pre>";
                     var_dump($site_mail);
-                    $_mail = $site_mail->mailaddress;
-                    $_site = AddSites::where('id', $site_id)->first();
-                    $user_id = $_site->user_id;
-                    $user = User::where('id', $user_id)->first();
-                    $user_email = $user->email;
-                    $site_name = $_site->site_name;
-                    $site_url = $_site->url;
+                    echo "</pre>";
+                    // $_mail = $site_mail->mailaddress;
+                    // $_site = AddSites::where('id', $site_id)->first();
+                    // $user_id = $_site->user_id;
+                    // $user = User::where('id', $user_id)->first();
+                    // $user_email = $user->email;
+                    // $site_name = $_site->site_name;
+                    // $site_url = $_site->url;
                     try {
                         // \Mail::to($user_email)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
                         // \Mail::to($_mail)->send(new CustomerSendmail($site_url, $site_name, $action_url));

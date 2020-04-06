@@ -4,12 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\User;
 use App\AddSites;
-use App\Plans;
-use Auth;
-use Google;
-use DB;
 use Route;
 
 use Google_Service_AnalyticsReporting_DateRange;
@@ -21,8 +16,6 @@ use Google_Service_AnalyticsReporting_OrderBy;
 use Google_Service_AnalyticsReporting_ReportRequest;
 use Google_Service_AnalyticsReporting_GetReportsRequest;
 use Google_Service_Webmasters_SearchAnalyticsQueryRequest;
-use Google_Service_Webmasters_ApiDimensionFilter;
-use Google_Service_Webmasters_ApiDimensionFilterGroup;
 
 class ReportController extends Controller
 {

@@ -12,39 +12,28 @@ $old_re_users = round($old_re_user_data / ($old_new_user_data + $old_re_user_dat
 $comp_new_users = round($new_users - $old_new_users, 2);
 $comp_re_users = round($re_users - $old_re_users, 2);
 // 男女比
-if (!isset($ga_result_user[0][2]['male'])) {
+if (isset($ga_result_user[0][2]['female'][0])) {
   $female = $ga_result_user[0][2]['female'][0];
-  $male = 0;
+  $male = $ga_result_user[0][2]['male'][0];
   $old_female = $ga_result_user[0][2]['female'][1];
-  $old_male = 0;
+  $old_male = $ga_result_user[0][2]['male'][1];
   $female_str = round($female / ($female + $male) * 100, 2);
-  $male_str = 0;
+  $male_str = round($male / ($female + $male) * 100, 2);
   $old_female_str = round($old_female / ($old_female + $old_male) * 100, 2);
-  $old_male_str = 0;
+  $old_male_str = round($old_male / ($old_female + $old_male) * 100, 2);
   $comp_female = round($female_str - $old_female_str, 2);
-  $comp_male = 0;
-}elseif (!isset($ga_result_user[0][2]['female'])){
+  $comp_male = round($male_str - $old_male_str, 2);
+} else {
   $female = 0;
-  $male = $ga_result_user[0][2]['male'][0];
+  $male = 0;
   $old_female = 0;
-  $old_male = $ga_result_user[0][2]['male'][1];
+  $old_male = 0;
   $female_str = 0;
-  $male_str = round($male / ($female + $male) * 100, 2);
+  $male_str = 0;
   $old_female_str = 0;
-  $old_male_str = round($old_male / ($old_female + $old_male) * 100, 2);
+  $old_male_str = 0;
   $comp_female = 0;
-  $comp_male = round($male_str - $old_male_str, 2);
-}else{
-  $female = $ga_result_user[0][2]['female'][0];
-  $male = $ga_result_user[0][2]['male'][0];
-  $old_female = $ga_result_user[0][2]['female'][1];
-  $old_male = $ga_result_user[0][2]['male'][1];
-  $female_str = round($female / ($female + $male) * 100, 2);
-  $male_str = round($male / ($female + $male) * 100, 2);
-  $old_female_str = round($old_female / ($old_female + $old_male) * 100, 2);
-  $old_male_str = round($old_male / ($old_female + $old_male) * 100, 2);
-  $comp_female = round($female_str - $old_female_str, 2);
-  $comp_male = round($male_str - $old_male_str, 2);
+  $comp_male = 0;
 }
 
 // デバイス
@@ -64,13 +53,18 @@ $comp_mobile = round($mobile_str - $old_mobile_str, 2);
 $comp_desktop = round($desktop_str - $old_desktop_str, 2);
 $comp_tablet = round($tablet_str - $old_tablet_str, 2);
 // 年齢
-$age = $ga_result_user[1][2];
-$age_max = $age[0][1];
-$sort = [];
-foreach ($age as $key => $value) {
-    $sort[$key] = $value[0];
+if (isset($ga_result_user[1][2])) {
+  $age = $ga_result_user[1][2];
+  $age_max = $age[0][1];
+  $sort = [];
+  foreach ($age as $key => $value) {
+      $sort[$key] = $value[0];
+  }
+  array_multisort($sort, SORT_ASC, $age);
+} else {
+  $age = [];
+  $age_max = null;
 }
-array_multisort($sort, SORT_ASC, $age);
 // 国
 $country = $ga_result_user[1][0];
 // 地域
@@ -128,6 +122,9 @@ $area = $ga_result_user[1][1];
 <img src="{{ asset('/img/fa-venus-mars_orange_16.png') }}" alt="">
 </span>
 <h4 class="h6 text-dark mt-3">性別</h4>
+@if($female === 0 && $male === 0)
+<p class="m-0">データがありません。</p>
+@endif
 <div class="text-center my-4">
 <canvas class="m-auto" id="doughnut-chart-2" width="150" height="150"></canvas>
 </div>
@@ -227,6 +224,9 @@ $area = $ga_result_user[1][1];
 <img src="{{ asset('/img/fa-user_blue_16.png') }}" alt="">
 </span>
 <h4 class="h6 text-dark mt-3">年齢</h4>
+@if(count($age) === 0)
+<p class="m-0">データがありません。</p>
+@else
 @foreach ($age as $key => $value)
 <p class="mb-0 overflow-hidden"><span class="float-left">{{ $value[0] }}</span><span class="float-right font-weight-bold h5 text-dark">{{ number_format($value[1]) }}</span></p>
 <div class="progress">
@@ -248,6 +248,7 @@ if ($age[$key][2] != 0) {
 {{ $comp }}%</span>
 </p>
 @endforeach
+@endif
 </div>
 </div>
 </div>
@@ -339,8 +340,7 @@ if ($area[$key][2] != 0) {
 <h3 class="font-weight-bold h5 mt-2">ユーザー属性の総評</h3>
 <p id="comment_user">
 ・{{ $new_users }}% が初めてサイトに訪れているユーザーです。
-<br>
-・{{ $age[0][0] }}歳のユーザーが多く、@if($female_str > 50)女性@else男性@endifのユーザーが大半を占めています。
+@if(count($age) !== 0)<br>・{{ $age[0][0] }}歳のユーザーが多く、@if($female_str > 50)女性@else男性@endifのユーザーが大半を占めています。@endif
 <br>
 ・{{ $country[0][0] }}、{{ $area[0][0] }}の地域からの流入が多くなっています。
 </p>

@@ -120,6 +120,9 @@ $area = $ga_result[1][1];
 <i class="fas fa-venus-mars opacity-color-orange"></i>
 </span>
 <h4 class="h6 text-dark mt-3">性別</h4>
+@if($female === 0 && $male === 0)
+<p class="m-0">データがありません。</p>
+@endif
 <div class="text-center my-4">
 <canvas class="m-auto" id="doughnut-chart-2" width="150" height="150"></canvas>
 </div>

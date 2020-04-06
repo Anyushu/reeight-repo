@@ -1,4 +1,3 @@
-@if(count($ga_result_user[0]) == 3 && count($ga_result_user[1]) == 3)
 @php
 // ユーザー数
 $new_user_data = $ga_result_user[0][0]['New Visitor'][0];
@@ -427,16 +426,3 @@ let myChart3 = new Chart(don3, {
 });
 </script>
 @endsection
-@else
-@section('content_users')
-<section class="reports">
-<div class="container">
-<div class="col-12">
-<div class="alert alert-warning">
-<p class="m-0">ユーザーの属性情報が取得できませんでした。</p>
-</div>
-</div>
-</div>
-</section>
-@endsection
-@endif

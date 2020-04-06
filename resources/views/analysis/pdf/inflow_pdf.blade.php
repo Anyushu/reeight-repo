@@ -112,6 +112,9 @@ $comp = 0;
 <img src="{{ asset('/img/fa-retweet_purple-2_16.png') }}" alt="">
 </span>
 <h4 class="h6 text-dark mt-3">SNSからの流入</h4>
+@if(count($sns) === 0)
+<p class="m-0">データがありません。</p>
+@endif
 @foreach ($sns as $key => $value)
 <p class="mb-0 overflow-hidden"><span class="float-left">{{ $value[0] }}</span><span class="float-right font-weight-bold h5 text-dark">{{ number_format($value[1]) }}</span></p>
 <div class="progress">

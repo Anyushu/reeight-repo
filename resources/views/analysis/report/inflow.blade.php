@@ -150,6 +150,9 @@ $comp = 0;
 <i class="fas fa-link opacity-color-purple"></i>
 </span>
 <h4 class="h6 text-dark mt-3 mb-4">他サイトからの流入</h4>
+@if(count($link) === 0)
+<p class="m-0">データがありません。</p>
+@endif
 @foreach ($link as $key => $value)
 <p class="mb-0 overflow-hidden"><span class="float-left">{{ $value[0] }}</span><span class="float-right font-weight-bold h5 text-dark">{{ number_format($value[1]) }}</span></p>
 <div class="progress">

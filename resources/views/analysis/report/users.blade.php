@@ -328,7 +328,7 @@ if ($area[$key][2] != 0) {
 </div>
 <textarea id="comment_user" class="border form-control text-secondary" name="name" rows="4" onfocus="textareaBtn()">
 ・{{ $new_users }}% が初めてサイトに訪れているユーザーです。
-・{{ $age[0][0] }}歳のユーザーが多く、@if($female_str > 50)女性@else男性@endifのユーザーが大半を占めています。
+@if(count($age) !== 0)・{{ $age[0][0] }}歳のユーザーが多く、@if($female_str > 50)女性@else男性@endifのユーザーが大半を占めています。@endif
 ・{{ $country[0][0] }}、{{ $area[0][0] }}の地域からの流入が多くなっています。
 </textarea>
 </div>

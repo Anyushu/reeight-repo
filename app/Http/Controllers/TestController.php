@@ -127,19 +127,26 @@ class TestController extends Controller
                 } elseif ($site_days == 30) {
                     $action_url = URL::signedRoute('report-pdf.one-month', ['AddSites' => $site_id]);
                     $site_mail = ReportSendMail::where('site_id', $site_id)->get();
-                    echo "<pre>";
-                    var_dump($site_mail);
-                    echo "</pre>";
-                    // $_mail = $site_mail->mailaddress;
-                    // $_site = AddSites::where('id', $site_id)->first();
-                    // $user_id = $_site->user_id;
-                    // $user = User::where('id', $user_id)->first();
-                    // $user_email = $user->email;
-                    // $site_name = $_site->site_name;
-                    // $site_url = $_site->url;
+                    $mail_to = "";
+                    $mail_cc = [];
+                    foreach ($site_mail as $key => $val) {
+                        if ($val->mailaddress !== null && $val->mailaddress !== '') {
+                            if ($val->to_cc === 0) {
+                                $mail_to = $val->mailaddress;
+                            } else {
+                                $mail_cc[] = $val->mailaddress;
+                            }
+                        }
+                    }
+                    $_site = AddSites::where('id', $site_id)->first();
+                    $user_id = $_site->user_id;
+                    $user = User::where('id', $user_id)->first();
+                    $user_email = $user->email;
+                    $site_name = $_site->site_name;
+                    $site_url = $_site->url;
                     try {
-                        // \Mail::to($user_email)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
-                        // \Mail::to($_mail)->send(new CustomerSendmail($site_url, $site_name, $action_url));
+                        \Mail::to($user_email)->cc($mail_cc)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
+                        \Mail::to($mail_to)->send(new CustomerSendmail($site_url, $site_name, $action_url));
                     } catch (\Exception $e) {
                     }
                 } else {

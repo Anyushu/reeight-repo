@@ -217,6 +217,9 @@ $area = $ga_result[1][1];
 <i class="fas fa-user opacity-color-blue"></i>
 </span>
 <h4 class="h6 text-dark mt-3 mb-4">年齢</h4>
+@if(count($age) === 0)
+<p class="m-0">データがありません。</p>
+@else
 @foreach ($age as $key => $value)
 <p class="mb-0 overflow-hidden"><span class="float-left">{{ $value[0] }}</span><span class="float-right font-weight-bold h5 text-dark">{{ number_format($value[1]) }}</span></p>
 <div class="progress">
@@ -238,6 +241,7 @@ if ($age[$key][2] != 0) {
 {{ $comp }}%</span>
 </p>
 @endforeach
+@endif
 </div>
 </div>
 </div>

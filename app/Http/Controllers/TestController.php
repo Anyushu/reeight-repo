@@ -144,9 +144,10 @@ class TestController extends Controller
                     $user_email = $user->email;
                     $site_name = $_site->site_name;
                     $site_url = $_site->url;
+                    dd($mail_to, $mail_cc);
                     try {
-                        \Mail::to($user_email)->cc($mail_cc)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
-                        \Mail::to($mail_to)->send(new CustomerSendmail($site_url, $site_name, $action_url));
+                        // \Mail::to($user_email)->cc($mail_cc)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
+                        // \Mail::to($mail_to)->send(new CustomerSendmail($site_url, $site_name, $action_url));
                     } catch (\Exception $e) {
                     }
                 } else {

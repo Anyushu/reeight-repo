@@ -76,9 +76,9 @@ class PdfController extends Controller
               case 'report-pdf.one-month':
                 $days = 30;
                 $start = date('Y-m-d', strtotime('first day of previous month'));
-                $end = date('Y-m-d', strtotime('+29 day', strtotime($start)));
-                $com_end = date('Y-m-d', strtotime('-1 day', strtotime($start)));
-                $com_start = date('Y-m-d', strtotime('-29 days', strtotime($com_end)));
+                $end = date('Y-m-t', strtotime($start));
+                $com_start = date('Y-m-01', strtotime(date('Y-m-d').' -2 month'));
+                $com_end = date('Y-m-t', strtotime($com_start));
                 break;
               case 'report-pdf.three-month':
                 $days = 90;
@@ -177,8 +177,8 @@ class PdfController extends Controller
         $dateRangeTwo = new Google_Service_AnalyticsReporting_DateRange();
         $dateRangeTwo->setStartDate($comStart);
         $dateRangeTwo->setEndDate($comEnd);
-        $start_months = date('Y-m-01', strtotime($comStart.' -1 months'));
-        $end_months = date('Y-m-t', strtotime(date('Y-m-01') . '-1 month'));
+        $start_months = date('Y-m-01', strtotime(date('Y-m-d').' -3 month'));
+        $end_months = date('Y-m-t', strtotime(date('Y-m-d').' -1 month'));
         $three_months = new Google_Service_AnalyticsReporting_DateRange();
         $three_months->setStartDate($start_months);
         $three_months->setEndDate($end_months);

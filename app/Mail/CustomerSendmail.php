@@ -35,7 +35,7 @@ class CustomerSendmail extends Mailable implements ShouldQueue
     public function build()
     {
         return $this
-        ->subject('再送【'.date('Y年n月', strtotime(date('Y-m-1').'-1 month')).'度 - Webサイト解析レポート】')
+        ->subject('【'.date('Y年n月', strtotime(date('Y-m-1').'-1 month')).'度 - Webサイト解析レポート】')
         ->markdown('mail.report-customer')
         ->with([
             'site_url' => $this->site_url,
